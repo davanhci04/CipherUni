@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher Encoder/Decoder</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body class="no-select">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="container-custom">
+            <h1 class="text-center no-select">Block Cipher</h1>
+
+            <!-- Chọn hành động -->
+            <div class="mb-3">
+                <label class="form-label no-select">Action</label>
+                <div>
+                    <input type="radio" class="btn-check" name="action" id="encodeAction" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="encodeAction">Encode</label>
+
+                    <input type="radio" class="btn-check" name="action" id="decodeAction" autocomplete="off">
+                    <label class="btn btn-outline-warning" for="decodeAction">Decode</label>
+
+                    <button class="btn btn-secondary" onclick="clearText()">Clear</button>
+                </div>
+            </div>
+
+            <!-- Chọn kiểu mã hóa -->
+            <div class="mb-3">
+                <label class="form-label no-select">Cipher Type</label>
+                <select class="form-select" id="cipherType" onchange="toggleCipherInputs()">
+                    <option value="des">DES</option>
+                    <option value="aes">AES</option>
+                </select>
+            </div>
+
+            <!-- Nhập khóa cho DES và AES -->
+            <div class="mb-3" id="keyDiv">
+                <label for="cipherKey" class="form-label no-select">Key</label>
+                <input type="text" class="form-control no-select" id="cipherKey" placeholder="Enter key for DES/AES">
+                <small class="form-text text-muted">DES key should be 8 characters, AES can be 16, 24, or 32 characters.</small>
+            </div>
+
+            <!-- Form nhập chuỗi -->
+            <div class="mb-3">
+                <label for="inputText" class="form-label no-select">Enter text</label>
+                <textarea class="form-control no-select blockk" id="inputText" rows="4"></textarea>
+            </div>
+
+            <!-- Form tải tệp -->
+            <div class="mb-3">
+                <label for="fileInput" class="form-label no-select">Upload a file (.txt)</label>
+                <input class="form-control no-select" type="file" id="fileInput">
+            </div>
+
+            <!-- Kết quả -->
+            <div class="mb-3">
+                <label for="outputText" class="form-label no-select">Output</label>
+                <textarea class="form-control no-select blockk" id="outputText" rows="4" readonly></textarea>
+            </div>
+
+            <!-- Nút tải kết quả về -->
+            <div class="mb-3" style="display: none;">
+                <button class="btn btn-success" onclick="downloadResult()">Download Result</button>
+            </div>
+
+            <!-- Nút quay lại trang chính -->
+            <div class="mb-3">
+                <button class="btn btn-secondary" onclick="window.location.href='mainpage.html'">Back to Main</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="block.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</body>
+</html>

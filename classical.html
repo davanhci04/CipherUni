@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher Encoder/Decoder</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="no-select">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="container-custom">
+            <h1 class="text-center no-select">Classical Cipher</h1>
+
+            <!-- Chọn hành động -->
+            <div class="mb-3">
+                <label class="form-label no-select">Action</label>
+                <div>
+                    <input type="radio" class="btn-check" name="action" id="encodeAction" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="encodeAction">Encode</label>
+
+                    <input type="radio" class="btn-check" name="action" id="decodeAction" autocomplete="off">
+                    <label class="btn btn-outline-warning" for="decodeAction">Decode</label>
+
+                    <button class="btn btn-secondary" onclick="clearText()">Clear</button>
+                </div>
+            </div>
+
+            <!-- Chọn kiểu mã hóa -->
+            <div class="mb-3">
+                <label class="form-label no-select">Cipher Type</label>
+                <select class="form-select" id="cipherType" onchange="toggleCipherInputs()">
+                    <option value="caesar">Caesar</option>
+                    <option value="affine">Affine</option>
+                    <option value="vigenere">Vigenère</option>
+                    <option value="hill">Hill</option>
+                </select>
+            </div>
+
+            <!-- Nhập khóa cho Caesar Cipher -->
+            <div class="mb-3" id="caesarShiftDiv">
+                <label for="shiftValue" class="form-label no-select">Shift (key)</label>
+                <input type="number" class="form-control no-select" id="shiftValue" value="0">
+            </div>
+
+            <!-- Nhập khóa cho Affine Cipher (a và b) -->
+            <div class="row mb-3" id="affineShiftDiv" style="display:none;">
+                <div class="col">
+                    <label for="affineA" class="form-label no-select">Shift (a)</label>
+                    <input type="number" class="form-control no-select" id="affineA" value="1">
+                </div>
+                <div class="col">
+                    <label for="affineB" class="form-label no-select">Shift (b)</label>
+                    <input type="number" class="form-control no-select" id="affineB" value="0">
+                </div>
+            </div>
+
+            <!-- Nhập khóa cho Vigenère Cipher -->
+            <div class="mb-3" id="vigenereKeyDiv" style="display:none;">
+                <label for="vigenereKey" class="form-label no-select">Key</label>
+                <input type="text" class="form-control no-select" id="vigenereKey">
+            </div>
+
+            <!-- Nhập khóa cho Hill Cipher (ma trận) -->
+            <div class="mb-3" id="hillKeyDiv" style="display:none;">
+                <label for="hillKey" class="form-label no-select">Matrix Key (comma separated)</label>
+                <input type="text" class="form-control no-select" id="hillKey" placeholder="Example: 2,4,5,9 for 2x2 matrix">
+            </div>
+
+            <!-- Form nhập chuỗi -->
+            <div class="mb-3">
+                <label for="inputText" class="form-label no-select">Enter text</label>
+                <textarea class="form-control no-select blockk" id="inputText" rows="4"></textarea>
+            </div>
+
+            <!-- Form tải tệp -->
+            <div class="mb-3">
+                <label for="fileInput" class="form-label no-select">Upload a file (.txt)</label>
+                <input class="form-control no-select" type="file" id="fileInput">
+            </div>
+
+
+            <!-- Kết quả -->
+            <div class="mb-3">
+                <label for="outputText" class="form-label no-select">Output</label>
+                <textarea class="form-control no-select blockk" id="outputText" rows="4" readonly></textarea>
+            </div>
+
+            <!-- Nút tải kết quả về -->
+            <div class="mb-3" style="display: none;">
+                <button class="btn btn-success" onclick="downloadResult()">Download Result</button>
+            </div>
+
+            <!-- Nút quay lại trang chính -->
+            <div class="mb-3">
+                <button class="btn btn-secondary" onclick="window.location.href='mainpage.html'">Back to Main</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
